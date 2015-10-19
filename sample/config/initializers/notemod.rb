@@ -1,0 +1,1 @@
+ NoteMod.user_class = 'User'

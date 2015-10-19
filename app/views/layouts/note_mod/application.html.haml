@@ -1,0 +1,25 @@
+!!!
+%html{:lang => :zh}
+  %head
+    %meta{:'http-equiv' => 'Content-Type', :content => 'text/html; charset=utf-8'}
+    %meta{:name => 'viewport', :content => 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'}
+
+    %title rails engine: note_mod
+    = csrf_meta_tags
+    = stylesheet_link_tag 'note_mod/application', :media => 'screen'
+    = javascript_include_tag 'note_mod/application'
+
+  %body
+    .nav{class:'navbar navbar-inverse navbar-fixed-top'}
+      .navbar-header
+      - if user_signed_in?
+        .desc.current-user
+          %span.font_white 当前用户：
+          %strong.font_white= current_user.name
+          %a.font_white{:href => '/auth/logout', :data => {:method => :delete}}登出
+      - else
+        .desc
+          %span.font_white 当前无登录用户
+          %a.font_white{:href => '/auth/login'}登陆
+    .container
+      = yield
