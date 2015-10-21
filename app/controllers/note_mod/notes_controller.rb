@@ -2,7 +2,7 @@ module NoteMod
   class NotesController < NoteMod::ApplicationController
     def index 
       if current_user != nil
-        @notes =  NoteMod::Note.where(:creator_id=>current_user.id).all.sort(created_at:-1)
+        @notes = current_user.notes.all.sort(created_at:-1) 
       else
         redirect_to '/auth/login'
       end
@@ -10,7 +10,6 @@ module NoteMod
 
     def new
       @note = Note.new
-      p '1234'
       form_html = render_to_string "new"
       render :json => {
         :title => "记录笔记",
@@ -23,11 +22,11 @@ module NoteMod
       @note.creator = current_user
       if @note.save
         render :json => {
-          :note_id=>@note.id.to_s,
-          :note_title=>@note.title,
-          :note_content=>@note.content.html_safe,
-          :note_created_at=>@note.created_at ,
-          }.to_json
+          :note_id => @note.id.to_s,
+          :note_title => @note.title,
+          :note_content => @note.content.html_safe,
+          :note_created_at => @note.created_at.to_s,
+          }
       else
         render :json => @note.errors.messages, :status => 401
       end
@@ -39,15 +38,15 @@ module NoteMod
       render :json => {
         :title => "修改笔记",
         :body => form_html,
-        :note_title =>@note.title,
-        :note_content=>@note.content
+        :note_title => @note.title,
+        :note_content => @note.content
       }
     end
 
     def update
       @note = Note.find(params[:id])
       if @note.update_attributes(create_note_params)
-        render:json =>{:status=>200}
+        render:json => {:status=>200}
       else
         render :json => @note.errors.messages, 
           :status => 401
@@ -58,8 +57,8 @@ module NoteMod
     def destroy
       @note = Note.find(params[:id])
       @note.destroy
-      render :json =>{
-        :msg=>"删除成功"
+      render :json => {
+        :msg => "删除成功"
       }
     end
 

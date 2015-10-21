@@ -11,8 +11,8 @@ class NoteModal
     @$modal_dialog.find('.modal-body .nav').remove()
 
   close_model_dialog:($present_position)->
+    # 注：使用以下代码会出现，模态框关了，但是还有一层黑色。
     # @$modal_dialog.modal('hide')
-    # @$modal_dialog.find('.modal-header .close').click()
     $present_position.closest('.modal-dialog').find('.modal-header .close').click()
 
   copy_raw_note_template:(copyed_area,copy_into_area)->
@@ -38,6 +38,10 @@ class NoteModal
   set_information_to_content:(content_area,content)->
     content_for_show = content.replace(/\n/g,'<br>')
     content_area.find('.col-md-12').html(content_for_show)
+
+  edit_title_to_head:(edited_note,title)->
+    edited_note.find('.row.note-item-head .col-md-2 span:last').empty()
+    edited_note.find('.row.note-item-head .col-md-2 span:last').text(title)
 
   remove_error_class:()->
     @$modal_body.find('.error').remove()
@@ -113,10 +117,7 @@ class NoteModal
         edited_note = @$editing_btn_position.closest('.note-item')
         edited_note_head = edited_note.find('.row.note-item-head')
         edited_note_content = edited_note.find('.row.note-item-content')
-        #
-        edited_note.find('.row.note-item-head .col-md-2 span:last').empty()
-        edited_note.find('.row.note-item-head .col-md-2 span:last').text(title)
-        # 
+        @edit_title_to_head(edited_note,title)
         @set_information_to_content(edited_note_content,content)
         @animate_item_effect(edited_note)
       .error (msg) =>
