@@ -1,4 +1,4 @@
-source 'http://ruby.taobao.org'
+source 'https://ruby.taobao.org'
 
 gem 'rails', '4.2.3'
 gem 'sass-rails', '~> 5.0'
@@ -30,9 +30,13 @@ group :test, :development do
 end
 
 group :test do
+  gem 'rails-i18n', '~> 4.0.0'
   gem 'database_cleaner', '~> 1.4.1'
   gem "factory_girl_rails"
-  gem 'capybara'
+  gem 'capybara','~>2.3.0'
+  gem "capybara-webkit", '~> 1.6.0'
+  gem 'headless'
+  gem 'selenium-webdriver'
 end
 
 gem 'mongoid', '~> 4.0.2'
