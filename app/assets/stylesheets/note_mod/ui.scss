@@ -1,0 +1,41 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+body {
+  background-color: #fafafa;
+  font-family: '微软雅黑', arial;
+  color: #444;
+}
+
+.engine-generated {
+  padding: 15px;
+  background-color: #ffffda;
+  .desc {
+    font-size: 16px;
+    margin-bottom: 10px;
+    &.current-user {
+      color: #FF4400;
+    }
+  }
+}
+.font_white{
+  color: white
+}
+
+.field{
+  width: 500px
+}
+
+.note-item-content{
+  background-image: url(http://i.teamkn.com/i/gYqaDjW1.png);
+  padding: 15px 5px;
+  margin: 10px;
+  border-radius:15px;
+  height:120px;
+  overflow:hidden;
+  // white-space:nowrap;text-overflow:ellipsis;
+}
+
+.hidden-note-template{
+  display: none
+}

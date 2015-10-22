@@ -1,0 +1,68 @@
+.private-note-page
+  %br
+  %br
+  %br
+  %br
+  .notice
+    = notice
+  %button.btn.btn-primary.btn-lg.note-crt{:type => "button", :data =>{:toggle => "modal", :target =>"#modal-dialog"}}建立笔记
+  %hr
+  .hidden-note-template
+    .note-item
+      .row.note-item-head
+        .hidden
+          %p
+            / = note.id
+        .col-md-2
+          %span 题目：
+          %span
+          / = note.title
+        .col-md-5
+          %span 创建时间：
+          %span
+          / = note.created_at    
+        .col-md-1
+          %a.btn.btn-info.delete-note-btn
+            .glyphicon.glyphicon-trash
+        .col-md-1
+          %a.btn.btn-info
+            .glyphicon.glyphicon-zoom-in
+        .col-md-1
+          %a.btn.btn-info.edit-note-btn{:data =>{:toggle => "modal", :target =>"#modal-dialog"}}
+            .glyphicon.glyphicon-pencil
+      .row.note-item-content
+        .col-md-12
+          / = simple_format note.content
+      %hr
+  .present-note-items
+    - @notes.each do |note|
+      .note-item
+        .row.note-item-head
+          .hidden
+            %p= note.id
+          .col-md-2
+            %span 题目：
+            %span
+              = note.title
+          .col-md-5
+            %span 创建时间：
+            %span
+              = note.created_at    
+          .col-md-1
+            %a.btn.btn-info.delete-note-btn
+              .glyphicon.glyphicon-trash
+          .col-md-1
+            %a.btn.btn-info
+              .glyphicon.glyphicon-zoom-in
+          .col-md-1
+            %a.btn.btn-info.edit-note-btn{:data =>{:toggle => "modal", :target =>"#modal-dialog"}}
+              .glyphicon.glyphicon-pencil
+        .row.note-item-content
+          .col-md-12
+            = simple_format note.content
+        %hr
+  = render_cell :"note_mod/modal", :show
+
+
+
+
