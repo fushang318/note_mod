@@ -12,15 +12,13 @@ RSpec.describe NoteMod::Note, type: :model do
       expect(NoteMod::Note.find(tom_note).content).to eq("content a")
     end
 
-    # it '删除用户 tom 和笔记' do
-    #   p 'abc'
-    #   # 无法写第二个it 不知道为什么 http://stackoverflow.com/questions/3517724/why-is-rspec-saying-failure-error-unable-to-find-matching-line-from-backtrace
-    #   # user_tom = create(:user)
-    #   # tom_note = create(:note,:creator=>user_tom)
-    #   # before_delete_note_count = user_tom.notes.count
-    #   # NoteMod::Note.find(tom_note)
-    #   # after_delete_note_count = user_tom.notes.count
-    #   # expect(after_delete_note_count).to eq(before_delete_note_count-1)
-    # end
+    it '删除用户 tom 和笔记' do
+      user_tom = create(:user)
+      tom_note = create(:note,:creator=>user_tom)
+      before_delete_note_count = user_tom.notes.count
+      NoteMod::Note.find(tom_note).destroy
+      after_delete_note_count = user_tom.notes.count
+      expect(after_delete_note_count).to eq(before_delete_note_count-1)
+    end
   end
 end
