@@ -20,7 +20,7 @@
         .col-md-5
           %span 创建时间：
           %span
-          / = note.created_at    
+          / = note.created_at
         .col-md-1
           %a.btn.btn-info.delete-note-btn
             .glyphicon.glyphicon-trash
@@ -47,7 +47,7 @@
           .col-md-5
             %span 创建时间：
             %span
-              = note.created_at    
+              = note.created_at
           .col-md-1
             %a.btn.btn-info.delete-note-btn
               .glyphicon.glyphicon-trash
@@ -61,8 +61,4 @@
           .col-md-12
             = simple_format note.content
         %hr
-  = render_cell :"note_mod/modal", :show
-
-
-
-
+  = render_cell :"modal", :show

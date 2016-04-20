@@ -47,6 +47,6 @@ gem 'rails-i18n', '~> 4.0.0'
 gem 'simple_form'
 
 gem 'play_auth', :github => 'mindpin/play_auth',
-                 :tag => :latest
+                 :ref => "ebd3ada"
 
 gem 'note_mod', path: '../'
